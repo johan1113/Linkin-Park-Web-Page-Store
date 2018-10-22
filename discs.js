@@ -26,7 +26,7 @@ module.exports = [
     },
     {
         name: "IRIDESCENT",
-        img: "data/discs/images/iridiscent.jpg",
+        img: "data/discs/images/iridescent.jpg",
         type: "SINGLE",
         //song: "data/discs/songs/castle_of_glass.mp3",
         price: 3.99,
@@ -53,8 +53,8 @@ module.exports = [
         price: 5.50,
     },
     {
-        name: "MINUTES OF MIDNIGHT",
-        img: "data/discs/images/minutes_of_midnight.jpg",
+        name: "MINUTES TO MIDNIGHT",
+        img: "data/discs/images/minutes_to_midnight.jpg",
         type: "ALBUM",
         //song: "data/discs/songs/castle_of_glass.mp3",
         price: 24.19,
@@ -65,5 +65,33 @@ module.exports = [
         type: "SINGLE",
         //song: "data/discs/songs/castle_of_glass.mp3",
         price: 6.25,
+    },
+    {
+        name: "ONE MORE LIGHT",
+        img: "data/discs/images/one_more_light.jpg",
+        type: "SINGLE",
+        //song: "data/discs/songs/castle_of_glass.mp3",
+        price: 5.00,
+    },
+    {
+        name: "REBELLION",
+        img: "data/discs/images/rebellion.jpg",
+        type: "SINGLE",
+        //song: "data/discs/songs/castle_of_glass.mp3",
+        price: 3.99,
+    },
+    {
+        name: "RECHARGED",
+        img: "data/discs/images/recharged.jpg",
+        type: "ALBUM",
+        //song: "data/discs/songs/castle_of_glass.mp3",
+        price: 23.99,
+    },
+    {
+        name: "UNTIL IT´S GONE",
+        img: "data/discs/images/until_its_gone.jpg",
+        type: "SINGLE",
+        //song: "data/discs/songs/castle_of_glass.mp3",
+        price: 5.59,
     }
 ]

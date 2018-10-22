@@ -21,7 +21,11 @@ app.get('/', function(request, response){
 });
 
 app.get('/discography/', function(request, response){
-    response.render('discography', discs);
+    var discs_items = {
+        filter: "ALL",
+        discs: discs,
+    }
+    response.render('discography', discs_items);
 });
 
 app.listen(3000);

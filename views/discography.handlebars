@@ -30,12 +30,17 @@
             <a href="">ALBUM</a>
         </section>
         <section class="filters_selected">
-            <a href="">ALL</a>
+            <a href="">{{filter}}</a>
         </section>
         <section class="discs">
             {{#each discs}}
             <article class="discs__item">
-                <img src="../{{img}}" alt="">
+                <img class="discs__item__img" src="../{{img}}" alt="">
+                <div class="discs__item__content">
+                    <h3>{{name}}</h3>
+                    <p>{{type}}:  {{price}}$</p>
+                    <a id="button" href="">STREAM / PURCHEASE</a>
+                </div>
             </article>
             {{/each}}
         </section>
