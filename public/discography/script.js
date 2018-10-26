@@ -13,3 +13,13 @@ window.onscroll = function () {
   }
   prevScrollpos = currentScrollPos;
 };
+
+
+var data = 'CASTLE OF GLASS';
+var url = '/discography/song?disc='+data;
+
+fetch(url, {
+  method: 'GET', // or 'PUT'
+}).then(res => res.json())
+.catch(error => console.error('Error:', error))
+.then(response => console.log('Success:', response));

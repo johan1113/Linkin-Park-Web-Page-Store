@@ -20,12 +20,23 @@ app.get('/', function(request, response){
     response.render('home');
 });
 
-app.get('/discography/', function(request, response){
+app.get('/discography', function(request, response){
     var discs_items = {
         filter: "ALL",
         discs: discs,
     }
     response.render('discography', discs_items);
+});
+
+app.get('/discography/song', function(request, response){
+    var name = request.query.disc;
+    console.log('identifica a: '+name);
+    var disc = discs.find(function(obj){
+        return obj.name == name;
+    });
+    console.log(disc);
+    response.json(disc);
+    
 });
 
 app.listen(3000);
