@@ -14,12 +14,20 @@ window.onscroll = function () {
   prevScrollpos = currentScrollPos;
 };
 
+var buttons = document.getElementsByClassName("discs__item__content__button");
+for (let index = 0; index < buttons.length; index++) {
+  const button = buttons[index];
+  button.addEventListener('click', function(e){
+    e.preventDefault();
+    var data = button.getAttribute('data-name');
+    var url = '/discography/song?disc='+data;
+    fetch(url, {
+      method: 'GET', // or 'PUT'
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response));
+  });
+}
 
-var data = 'CASTLE OF GLASS';
-var url = '/discography/song?disc='+data;
 
-fetch(url, {
-  method: 'GET', // or 'PUT'
-}).then(res => res.json())
-.catch(error => console.error('Error:', error))
-.then(response => console.log('Success:', response));
+
