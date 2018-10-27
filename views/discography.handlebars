@@ -14,21 +14,33 @@
     <section class="globalnav">
         <img class="globalnav__logo" src="../data/images/LP_logo.png" alt="LP logo not found">
         <nav class="globalnav__items">
-            <a class="globalnav__items__home" id="home" href="">HOME</a>
-            <a class="globalnav__items__discography" id="discography" href="discography">DISCOGRAPHY</a>
+            <a class="globalnav__items__home" id="home" href="/">HOME</a>
+            <a class="globalnav__items__discography" id="discography" href="/discography">DISCOGRAPHY</a>
             <a class="globalnav__items__videos" id="videos" href="">VIDEOS</a>
             <a class="globalnav__items__newsletter" id="newsletter" href="">NEWSLETTER</a>
             <img class="globalnav__items__carticon" src="../data/icons/cart.png">
             <a class="globalnav__items__cart" id="cart" href="">CART</a>
         </nav>
     </section>
+    <!-- COMENTADOOOOOOO
+    <section class="discpresentation">
+        <a class="discpresentation__close" id="close" href="">X</a>
+        <div class="discpresentation__reproductor">
+            <img class="discpresentation__reproductor__image" src="../data/discs/images/castle_of_glass.jpg">
+            <iframe class="discpresentation__reproductor__song" src="https://open.spotify.com/embed/track/1r1fPuhj9H4VdXr7OK6FL5" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+        <a class="discpresentation__addcart" id="button" href="">ADD TO CART</a>
+    </section>
+    -->
     <main>
+        <!-- FILTRO DE LA DISCOGRAFÍA -->
         <section class="filters">
             <p>FILTERS: </p>
             <a href="">ALL</a>
             <a href="">SINGLE</a>
             <a href="">ALBUM</a>
         </section>
+        <!-- DISCOS / PRODUCTOS -->
         <section class="filters_selected">
             <a href="">{{filter}}</a>
         </section>
@@ -44,7 +56,6 @@
             </article>
             {{/each}}
         </section>
-        <iframe src="https://open.spotify.com/embed/album/2tlTBLz2w52rpGCLBGyGw6" width="600" height="200" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
    </main>
     <!-- PIE DE PAGINA -->
     <footer class="footer">
