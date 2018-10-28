@@ -19,17 +19,25 @@ for (let index = 0; index < buttons.length; index++) {
   const button = buttons[index];
   button.addEventListener('click', function(e){
     e.preventDefault();
-    var data = button.getAttribute('data-name');
-    var url = '/discography/song?disc='+data;
-    fetch(url, {
-      method: 'GET', // or 'PUT'
-    }).then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(disc => createDiscPresentation(disc));
+    getSelectedDisc(this.getAttribute('data-name'));
   });
 }
 
+function getSelectedDisc(name){
+  var url = '/discography/song?disc='+name;
+  fetch(url, {
+    method: 'GET', // or 'PUT'
+  }).then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(disc => createDiscPresentation(disc));
+}
+
 function createDiscPresentation(disc){
+
+  if(document.querySelector('.discpresentation') != null){
+    document.querySelector('.discpresentation').remove();
+  }
+
   var section = document.createElement('section');
   section.setAttribute('class', 'discpresentation');
   
@@ -56,17 +64,47 @@ function createDiscPresentation(disc){
   frame.setAttribute('allowtransparency','true');
   frame.setAttribute('allow','encrypted-media');
 
-  var btnAddCart =document.createElement('a');
-  btnAddCart.setAttribute('class', 'discpresentation__addcart');
-  btnAddCart.setAttribute('id', 'button');
-  btnAddCart.innerHTML = "ADD TO CART";
+  var p = document.createElement('p');
+  p.setAttribute('class','discpresentation__reproductor__desc');
+  p.innerHTML = disc.type+' - Available for <span>'+disc.price+'$</span>';
+
+  var btnCart =document.createElement('a');
+  btnCart.setAttribute('class', 'discpresentation__btncart');
+  btnCart.setAttribute('id', 'button');
+  btnCart.setAttribute('href','');
+  btnCart.setAttribute('data-name',disc.name);
+  if(disc.cart == false){
+    btnCart.innerHTML = "ADD TO CART";
+  }else{
+    btnCart.innerHTML = "REMOVE FROM CART";
+  }
+  
+
+  btnCart.addEventListener('click',function(){
+    var data = this.getAttribute('data-name');
+    var url = '/discography/addcart?disc='+data;
+    fetch(url, {
+      method: 'GET', // or 'PUT'
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(disc => createDiscPresentation(disc));
+  });
 
   div.appendChild(img);
   div.appendChild(frame);
+  div.appendChild(p);
 
   section.appendChild(btnClose);
   section.appendChild(div);
-  section.appendChild(btnAddCart);
+
+  if(disc.cart == false){
+    section.appendChild(btnAddCart);
+  }
+
+  if(disc.cart == true){
+    section.appendChild(btnRemoveCart);
+  }
+  
 
   document.getElementsByTagName('body')[0].appendChild(section);
 }

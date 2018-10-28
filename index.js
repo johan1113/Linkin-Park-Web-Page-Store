@@ -50,15 +50,46 @@ app.get('/discography', function(request, response){
 });
 
 app.get('/discography/song', function(request, response){
-    var name = request.query.disc;
-    console.log('identifica a: '+name);
-    var disc = discs.find(function(obj){
-        return obj.name == name;
-    });
-    console.log(disc);
-    response.json(disc);
-    
+    const collection = db.collection('discs');
+    collection.find({}).toArray(function(err, docs){
+        if(err){
+            console.err("ha fallado la toma de objetos del servidor");
+            return;
+        }
+        var name = request.query.disc;
+        console.log('identifica a: '+name);
+        var disc = docs.find(function(obj){
+            return obj.name == name;
+        });
+        console.log(disc);
+        response.json(disc);
+    });    
 });
+
+app.get('/discography/addcart', function(request, response){
+    var disc = request.query.disc;
+    const collection = db.collection('discs');
+    collection.updateOne({name : disc}, { $set: {cart : true}}, function(err, result){
+        if(err){
+            console.err("ha fallado en modificar dato a: "+disc);
+            return;
+        }
+        console.log("ha modificado dato a: "+disc);
+    });
+});
+
+app.get('/discography/removecart', function(request, response){
+    var disc = request.query.disc;
+    const collection = db.collection('discs');
+    collection.updateOne({name : disc}, { $set: {cart : false}}, function(err, result){
+        if(err){
+            console.err("ha fallado en modificar dato a: "+disc);
+            return;
+        }
+        console.log("ha modificado dato a: "+disc);
+    });
+});
+
 
 app.listen(3000);
 /*

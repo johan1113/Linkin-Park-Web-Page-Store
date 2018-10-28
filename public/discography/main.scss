@@ -113,6 +113,16 @@ body {
             height: 80px;
             margin: 0px;
         }
+        &__desc{
+            margin-top: 30px;
+            color: white;
+            text-align: center;
+            font-weight: 300;
+            & span{
+                color:lime;
+                font-weight: 500;
+            }
+        }
     }
 }
 
