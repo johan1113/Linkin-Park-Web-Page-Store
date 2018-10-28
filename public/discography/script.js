@@ -33,11 +33,6 @@ function getSelectedDisc(name){
 }
 
 function createDiscPresentation(disc){
-
-  if(document.querySelector('.discpresentation') != null){
-    document.querySelector('.discpresentation').remove();
-  }
-
   var section = document.createElement('section');
   section.setAttribute('class', 'discpresentation');
   
@@ -78,16 +73,21 @@ function createDiscPresentation(disc){
   }else{
     btnCart.innerHTML = "REMOVE FROM CART";
   }
-  
 
-  btnCart.addEventListener('click',function(){
-    var data = this.getAttribute('data-name');
-    var url = '/discography/addcart?disc='+data;
+  btnCart.addEventListener('click',function(e){
+    e.preventDefault();
+    var url;
+    if(disc.cart == false){
+      url = '/discography/addcart?disc='+this.getAttribute('data-name');
+    }
+    if(disc.cart == true){
+      url = '/discography/removecart?disc='+this.getAttribute('data-name');
+    }
     fetch(url, {
       method: 'GET', // or 'PUT'
     }).then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(disc => createDiscPresentation(disc));
+    .then(newdisc => evaluateBtn(newdisc, disc));
   });
 
   div.appendChild(img);
@@ -97,16 +97,25 @@ function createDiscPresentation(disc){
   section.appendChild(btnClose);
   section.appendChild(div);
 
-  if(disc.cart == false){
-    section.appendChild(btnAddCart);
-  }
-
-  if(disc.cart == true){
-    section.appendChild(btnRemoveCart);
-  }
-  
+  section.appendChild(btnCart);
 
   document.getElementsByTagName('body')[0].appendChild(section);
+}
+
+function evaluateBtn(newdisc){
+  /*
+  if(newdisc.cart == false){
+    console.log('entro a false');
+    document.querySelector('.discpresentation__btncart').innerHTML= "ADD TO CART";
+  }
+  if(newdisc.cart == true){
+    console.log('entro a true');
+    document.querySelector('.discpresentation__btncart').innerHTML= "REMOVE FROM CART";
+  }
+  */
+
+  getSelectedDisc(document.querySelector('.discpresentation__btncart').getAttribute('data-name'));
+  document.querySelector('.discpresentation').remove();
 }
 
 

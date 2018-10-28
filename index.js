@@ -10,6 +10,17 @@ app.engine('handlebars', hbs());
 //para setear el motor de render a utilizar
 app.set('view engine', 'handlebars');
 
+// importar módulo body-parser
+var bodyParser = require('body-parser');
+// configurar módulo body-parser
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
+// usar body-parser
+app.use(express.json());
+
+
 // Conexion a la URL
 const url = 'mongodb://localhost:27017';
 //nombre de la base de datos
@@ -36,7 +47,7 @@ app.get('/discography', function(request, response){
     const collection = db.collection('discs');
     collection.find({}).toArray(function(err, docs){
         if(err){
-            console.err("ha fallado la toma de objetos del servidor");
+            console.err("ha fallado en la toma de objetos del servidor");
             return;
         }
 
@@ -53,7 +64,7 @@ app.get('/discography/song', function(request, response){
     const collection = db.collection('discs');
     collection.find({}).toArray(function(err, docs){
         if(err){
-            console.err("ha fallado la toma de objetos del servidor");
+            console.err("ha fallado en la toma de objetos del servidor");
             return;
         }
         var name = request.query.disc;
@@ -67,27 +78,51 @@ app.get('/discography/song', function(request, response){
 });
 
 app.get('/discography/addcart', function(request, response){
-    var disc = request.query.disc;
+    var discname = request.query.disc;
     const collection = db.collection('discs');
-    collection.updateOne({name : disc}, { $set: {cart : true}}, function(err, result){
+    collection.updateOne({name : discname}, { $set: {cart : true}}, function(err, result){
         if(err){
-            console.err("ha fallado en modificar dato a: "+disc);
+            console.err("ha fallado en modificar dato a: "+discname);
             return;
         }
-        console.log("ha modificado dato a: "+disc);
+        console.log("ha modificado dato a: "+discname);
     });
+    collection.find({}).toArray(function(err, docs){
+        if(err){
+            console.err("ha fallado en la toma de objetos del servidor");
+            return;
+        }
+        console.log('identifica a: '+discname);
+        var newdisc = docs.find(function(obj){
+            return obj.name == discname;
+        });
+        console.log(newdisc);
+        response.json(newdisc);
+    });    
 });
 
 app.get('/discography/removecart', function(request, response){
-    var disc = request.query.disc;
+    var discname = request.query.disc;
     const collection = db.collection('discs');
-    collection.updateOne({name : disc}, { $set: {cart : false}}, function(err, result){
+    collection.updateOne({name : discname}, { $set: {cart : false}}, function(err, result){
         if(err){
-            console.err("ha fallado en modificar dato a: "+disc);
+            console.err("ha fallado en modificar dato a: "+discname);
             return;
         }
-        console.log("ha modificado dato a: "+disc);
+        console.log("ha modificado dato a: "+discname);
     });
+    collection.find({}).toArray(function(err, docs){
+        if(err){
+            console.err("ha fallado en la toma de objetos del servidor");
+            return;
+        }
+        console.log('identifica a: '+discname);
+        var newdisc = docs.find(function(obj){
+            return obj.name == discname;
+        });
+        console.log(newdisc);
+        response.json(newdisc);
+    });    
 });
 
 
