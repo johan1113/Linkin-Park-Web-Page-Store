@@ -1,7 +1,7 @@
 const express = require('express');
 const hbs = require('express-handlebars');
-
 const app = express();
+const MongoClient = require('mongodb').MongoClient;
 
 //para definir la carpeta publica
 app.use(express.static('public'));
@@ -10,10 +10,22 @@ app.engine('handlebars', hbs());
 //para setear el motor de render a utilizar
 app.set('view engine', 'handlebars');
 
+// Conexion a la URL
+const url = 'mongodb://localhost:27017';
+//nombre de la base de datos
+const dbName = 'linkinpark';
+// Crea un nuevo MongoClient
+const client = new MongoClient(url);
 
-//importar archivo discs.js
-var discs = require('./discs.js');
-console.log('discs: ',discs);
+var db = null;
+// metodo encargado de conectar con el servidor
+client.connect(function(err) {
+    if(err){
+        console.err("ha fallado la conexion con el servidor");
+        return;
+    }
+    db = client.db(dbName);
+});
 
 //defninir ruta root o principal
 app.get('/', function(request, response){
@@ -21,11 +33,20 @@ app.get('/', function(request, response){
 });
 
 app.get('/discography', function(request, response){
-    var discs_items = {
-        filter: "ALL",
-        discs: discs,
-    }
-    response.render('discography', discs_items);
+    const collection = db.collection('discs');
+    collection.find({}).toArray(function(err, docs){
+        if(err){
+            console.err("ha fallado la toma de objetos del servidor");
+            return;
+        }
+
+        var discs_items = {
+            filter: "ALL",
+            discs: docs,
+        }
+        response.render('discography', discs_items);
+    });
+
 });
 
 app.get('/discography/song', function(request, response){
