@@ -50,7 +50,6 @@ app.get('/discography', function(request, response){
             console.err("ha fallado en la toma de objetos del servidor");
             return;
         }
-
         var discs_items = {
             filter: "ALL",
             discs: docs,
@@ -72,83 +71,49 @@ app.get('/discography/song', function(request, response){
         var disc = docs.find(function(obj){
             return obj.name == name;
         });
-        console.log(disc);
         response.json(disc);
     });    
 });
 
-app.get('/discography/addcart', function(request, response){
-    var discname = request.query.disc;
-    const collection = db.collection('discs');
-    collection.updateOne({name : discname}, { $set: {cart : true}}, function(err, result){
-        if(err){
-            console.err("ha fallado en modificar dato a: "+discname);
-            return;
-        }
-        console.log("ha modificado dato a: "+discname);
-    });
+app.get('/discography/songstatus', function(request, response){
+    const collection = db.collection('cartdiscs');
     collection.find({}).toArray(function(err, docs){
-        if(err){
-            console.err("ha fallado en la toma de objetos del servidor");
-            return;
-        }
-        console.log('identifica a: '+discname);
-        var newdisc = docs.find(function(obj){
-            return obj.name == discname;
+        var name = request.query.disc;
+        console.log('identifica a: '+name);
+        var disc = null;
+        disc = docs.find(function(obj){
+            return obj.name == name;
         });
-        console.log(newdisc);
-        response.json(newdisc);
+        if(disc == null){
+            response.send('ADD TO CART');            
+        }else{
+            response.send('REMOVE FROM CART');
+        }
     });    
 });
 
-app.get('/discography/removecart', function(request, response){
-    var discname = request.query.disc;
+app.post('/discography/addcart', function(request, response){
+    var discname = request.body.disc;
     const collection = db.collection('discs');
-    collection.updateOne({name : discname}, { $set: {cart : false}}, function(err, result){
-        if(err){
-            console.err("ha fallado en modificar dato a: "+discname);
-            return;
-        }
-        console.log("ha modificado dato a: "+discname);
-    });
     collection.find({}).toArray(function(err, docs){
-        if(err){
-            console.err("ha fallado en la toma de objetos del servidor");
-            return;
-        }
-        console.log('identifica a: '+discname);
-        var newdisc = docs.find(function(obj){
+        var disc = docs.find(function(obj){
             return obj.name == discname;
         });
-        console.log(newdisc);
-        response.json(newdisc);
-    });    
+        db.collection('cartdiscs').insert(disc);
+    });
+    response.send('REMOVE FROM CART');   
 });
 
+app.post('/discography/removecart', function(request, response){
+    var discname = request.body.disc;
+    const collection = db.collection('discs');
+    collection.find({}).toArray(function(err, docs){
+        var disc = docs.find(function(obj){
+            return obj.name == discname;
+        });
+        db.collection('cartdiscs').deleteOne(disc);
+    });
+    response.send('ADD TO CART');
+});
 
 app.listen(3000);
-/*
-//instalo body-parser para sacar deatos con post(convierte informacion del body a variables)
-//importo body-parser
-var bodyparser = require('body-parser');
-app.use(bodyparser.json());                   //to support JSON-ecoded bodies
-app.use(bodyparser.urlencoded({               //to suppport URL-encoded bodies
-    extended: true
-}))
-//usar body-parser
-app.use(express.json());
-
-//definir ruta para agregar personas
-app.post('/agregar', function(request, response){
-    personas.push({
-        nombre: request.body.nombre,
-        edad: request.body.edad,
-    });
-    console.log(request.body);
-    response.send('ok, agregado.');
-});
-
-//iniciar el servidor en el puerto especificado
-
-//npx nodemon index.js
-*/
