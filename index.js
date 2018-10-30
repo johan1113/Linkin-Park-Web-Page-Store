@@ -119,4 +119,16 @@ app.get('/cart/getdiscscart', function(request, response){
     });
 });
 
+app.post('/cart/removecart', function(request, response){
+    var discname = request.body.disc;
+    const collection = db.collection('discs');
+    collection.find({}).toArray(function(err, docs){
+        var disc = docs.find(function(obj){
+            return obj.name == discname;
+        });
+        db.collection('cartdiscs').deleteOne(disc);
+    });
+    response.send('REMOVED');
+});
+
 app.listen(3000);
