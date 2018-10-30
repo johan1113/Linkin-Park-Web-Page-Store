@@ -94,6 +94,11 @@ body {
   margin-left: 5px;
 }
 
+main {
+  width: 100%;
+  background-color: black;
+}
+
 .discpresentation {
   width: 100%;
   height: 100vh;
@@ -162,11 +167,6 @@ body {
   font-weight: 500;
 }
 
-main {
-  width: 100%;
-  background-color: black;
-}
-
 .filters {
   width: 100%;
   padding: 200px 15% 20px 15%;
@@ -212,7 +212,6 @@ main {
 #button {
   border: 1px solid white;
   padding: 15px;
-  font-weight: 600;
   font-size: 20px;
   text-decoration: none;
   -webkit-transition: 0.5s ease-in;

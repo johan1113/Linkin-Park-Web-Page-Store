@@ -1,4 +1,3 @@
-
 window.addEventListener('load', function(){
   console.log("ingresó a discografía");
 
@@ -63,7 +62,7 @@ window.addEventListener('load', function(){
 
     var p = document.createElement('p');
     p.setAttribute('class','discpresentation__reproductor__desc');
-    p.innerHTML = disc.type+' - Available for <span>'+disc.price+'$</span>';
+    p.innerHTML = disc.type+' published in '+disc.year+' - Available for <span>$'+disc.price+'</span>';
 
     var btnCart =document.createElement('a');
     btnCart.setAttribute('class', 'discpresentation__btncart');
@@ -105,7 +104,6 @@ window.addEventListener('load', function(){
 
     section.appendChild(btnClose);
     section.appendChild(div);
-
     section.appendChild(btnCart);
 
     document.getElementsByTagName('body')[0].appendChild(section);

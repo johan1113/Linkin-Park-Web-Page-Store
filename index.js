@@ -46,10 +46,6 @@ app.get('/', function(request, response){
 app.get('/discography', function(request, response){
     const collection = db.collection('discs');
     collection.find({}).toArray(function(err, docs){
-        if(err){
-            console.err("ha fallado en la toma de objetos del servidor");
-            return;
-        }
         var discs_items = {
             filter: "ALL",
             discs: docs,
@@ -62,10 +58,6 @@ app.get('/discography', function(request, response){
 app.get('/discography/song', function(request, response){
     const collection = db.collection('discs');
     collection.find({}).toArray(function(err, docs){
-        if(err){
-            console.err("ha fallado en la toma de objetos del servidor");
-            return;
-        }
         var name = request.query.disc;
         console.log('identifica a: '+name);
         var disc = docs.find(function(obj){
@@ -114,6 +106,17 @@ app.post('/discography/removecart', function(request, response){
         db.collection('cartdiscs').deleteOne(disc);
     });
     response.send('ADD TO CART');
+});
+
+app.get('/cart', function(request, response){
+    response.render('cart');
+});
+
+app.get('/cart/getdiscscart', function(request, response){
+    const collection = db.collection('cartdiscs');
+    collection.find({}).toArray(function(err, docs){
+        response.json(docs);
+    });
 });
 
 app.listen(3000);
