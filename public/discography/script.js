@@ -271,5 +271,6 @@ window.addEventListener('load', function(){
   then close all select boxes:*/
   document.addEventListener("click", closeAllSelect);
   
+  console.log();
 });
 
