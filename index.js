@@ -131,4 +131,30 @@ app.post('/cart/removecart', function(request, response){
     response.send('REMOVED');
 });
 
+app.get('/discography/updatedisc', function(request, response){
+    var type = request.query.type;
+    var year = parseInt(request.query.year);
+    var price = parseFloat(request.query.price);
+    const collection = db.collection('discs');
+    collection.find({}).toArray(function(err, docs){
+        var newdiscs = docs;
+        if(type != "none"){
+            console.log('entra a type ****')
+            var discsfilter = newdiscs.filter(disc => disc.type == type);
+            newdiscs = discsfilter;
+        }
+        if(year != -1){
+            console.log('entra a year ****')
+            var discsfilter = newdiscs.filter(disc => disc.year == year);
+            newdiscs = discsfilter;
+        }
+        if(price != -1){
+            console.log('entra a price ****')
+            var discsfilter = newdiscs.filter(disc => disc.price >= price);
+            newdiscs = discsfilter;
+        }
+        response.json(newdiscs);
+    });
+});
+
 app.listen(3000);

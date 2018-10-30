@@ -181,32 +181,123 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .filters p {
   color: white;
   font-weight: 500;
-  margin-right: 50px;
 }
 
-.filters a {
-  color: white;
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  width: 20%;
+  font-weight: 500;
+}
+
+.custom-select select {
+  display: none;
+  /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: white;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: black transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent black transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div, .select-selected {
+  color: black;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: white;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.price-input {
+  width: 20%;
+  height: 40px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  padding-left: 30% 0 0 0;
+}
+
+.searchfilter {
+  border: 2px solid white;
+  padding: 8px;
+  font-size: 20px;
   text-decoration: none;
-  margin-left: 20px;
-  -webkit-filter: brightness(70%);
-          filter: brightness(70%);
+  -webkit-transition: 0.5s ease-in;
+  transition: 0.5s ease-in;
+  color: white;
+  border-color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  font-weight: 400;
 }
 
-.filters_selected {
+.searchfilter:hover {
+  border-style: none;
+  color: black;
+  background-color: white;
+  font-weight: 500;
+}
+
+.title {
   width: 100%;
   padding: 40px 15%;
 }
 
-.filters_selected a {
+.title h1 {
   color: white;
   text-decoration: none;
   font-weight: 500;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 #button {
@@ -222,7 +313,6 @@ main {
   text-align: center;
   -webkit-transition: 0.5s ease;
   transition: 0.5s ease;
-  margin-top: 40px;
   font-weight: 300;
 }
 
@@ -289,6 +379,10 @@ main {
 .discs__item__content h3 {
   font-weight: 600;
   margin-bottom: 25px;
+}
+
+.discs__item__content__button {
+  margin-top: 40px;
 }
 
 .discs__item:hover .discs__item__img {

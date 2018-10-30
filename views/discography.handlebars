@@ -26,13 +26,32 @@
         <!-- FILTRO DE LA DISCOGRAFÍA -->
         <section class="filters">
             <p>FILTERS: </p>
-            <a href="">ALL</a>
-            <a href="">SINGLE</a>
-            <a href="">ALBUM</a>
+            <div class="custom-select" id="type">
+                <select class="type-select">
+                    <option value="0">Type of disc:</option>
+                    <option value="1">SONG</option>
+                    <option value="2">ALBUM</option>
+                </select>
+            </div>
+            <div class="custom-select" id="year">
+                <select name="year" class="year-select">
+                    <option value="0">Publication year:</option>
+                    <option value="1">2003</option>
+                    <option value="2">2007</option>
+                    <option value="3">2009</option>
+                    <option value="4">2010</option>
+                    <option value="5">2012</option>
+                    <option value="6">2013</option>
+                    <option value="7">2014</option>
+                    <option value="8">2017</option>
+                </select>
+            </div>
+            <input type="text" class="price-input" placeholder="Minimal price:">
+            <a class="searchfilter">SEARCH</a>
         </section>
         <!-- DISCOS / PRODUCTOS -->
-        <section class="filters_selected">
-            <a href="">{{filter}}</a>
+        <section class="title">
+            <h1>DISCOGRAPHY AVAILABLE:</h1>
         </section>
         <section class="discs">
             {{#each discs}}
