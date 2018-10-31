@@ -1,0 +1,332 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  background-color: black;
+}
+
+.globalnav {
+  width: 100%;
+  padding: 0 15%;
+  padding-top: 15px;
+  padding-bottom: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  -webkit-transition: top 0.3s;
+  transition: top 0.3s;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0)));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+  background-size: cover;
+  background-position: top;
+  z-index: 10;
+}
+
+.globalnav__logo {
+  width: 7%;
+  height: auto;
+}
+
+.globalnav__items__home {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  margin-left: 20px;
+  -webkit-filter: brightness(70%);
+          filter: brightness(70%);
+}
+
+.globalnav__items__discography {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  margin-left: 20px;
+  -webkit-filter: brightness(70%);
+          filter: brightness(70%);
+}
+
+.globalnav__items__videos {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  margin-left: 20px;
+  -webkit-filter: brightness(70%);
+          filter: brightness(70%);
+}
+
+.globalnav__items__newsletter {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  margin-left: 20px;
+  -webkit-filter: brightness(70%);
+          filter: brightness(70%);
+}
+
+.globalnav__items__carticon {
+  height: 25px;
+  margin-left: 60px;
+  margin-right: 0;
+  -webkit-filter: brightness(70%);
+          filter: brightness(70%);
+}
+
+.globalnav__items__cart {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  margin-left: 5px;
+  -webkit-filter: brightness(70%);
+          filter: brightness(70%);
+}
+
+main {
+  width: 100%;
+  background-color: black;
+}
+
+.head {
+  width: 100%;
+  height: 20vh;
+  background-image: url(../data/images/head_section.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.title {
+  width: 100%;
+  height: 8vh;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.title__text {
+  text-align: center;
+  color: black;
+  font-weight: 600;
+}
+
+.maincontainer {
+  width: 100%;
+  height: 72vh;
+  background-color: #0a0a0a;
+  padding: 5% 20%;
+}
+
+.maincontainer h3 {
+  color: white;
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 5%;
+}
+
+.maincontainer .formcontainer {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.maincontainer .formcontainer .billing {
+  width: 48%;
+  height: 90%;
+  background-color: #1b1b1b;
+  padding: 20px;
+}
+
+.maincontainer .formcontainer .billing__head {
+  border-bottom: 1px solid white;
+}
+
+.maincontainer .formcontainer .billing__head__title {
+  color: white;
+  margin-bottom: 5px;
+}
+
+.maincontainer .formcontainer .billing__body {
+  height: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding-top: 10%;
+}
+
+.maincontainer .formcontainer .billing__body__nametitle {
+  color: #c8c8c8;
+}
+
+.maincontainer .formcontainer .billing__body__input {
+  background-color: #1b1b1b;
+  color: white;
+  border: 1px solid #c8c8c8;
+  width: 100%;
+  height: 28px;
+}
+
+.maincontainer .formcontainer .rightsection {
+  width: 48%;
+  height: 90%;
+}
+
+.maincontainer .formcontainer .rightsection .payment {
+  width: 100%;
+  height: 55%;
+  background-color: #1b1b1b;
+  padding: 20px;
+  color: #c8c8c8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.maincontainer .formcontainer .rightsection .payment__head {
+  border-bottom: 1px solid white;
+}
+
+.maincontainer .formcontainer .rightsection .payment__head__title {
+  color: white;
+  margin-bottom: 5px;
+}
+
+.maincontainer .formcontainer .rightsection .payment__cards {
+  padding-top: 7%;
+  height: 55%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.maincontainer .formcontainer .rightsection .payment__cards p {
+  margin-bottom: 10px;
+}
+
+.maincontainer .formcontainer .rightsection .payment__input {
+  background-color: #1b1b1b;
+  color: white;
+  border: 1px solid #c8c8c8;
+  width: 100%;
+  height: 28px;
+  margin-top: 10px;
+}
+
+.maincontainer .formcontainer .rightsection .order {
+  width: 100%;
+  height: 40%;
+  margin-top: 5%;
+  background-color: white;
+  padding: 20px;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.maincontainer .formcontainer .rightsection .order__head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 2px solid black;
+  padding-bottom: 10px;
+}
+
+.maincontainer .formcontainer .rightsection .order__head__title {
+  font-weight: 600;
+}
+
+.maincontainer .formcontainer .rightsection .order__head__button {
+  padding: 10px;
+  text-decoration: none;
+  -webkit-transition: 0.5s ease-in;
+  transition: 0.5s ease-in;
+  text-align: center;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  font-weight: 600;
+  border: 3px solid black;
+  color: black;
+  border-color: black;
+}
+
+.maincontainer .formcontainer .rightsection .order__head__button:hover {
+  border-style: none;
+  color: white;
+  background-color: black;
+  font-weight: 500;
+}
+
+.maincontainer .formcontainer .rightsection .order__desc {
+  text-align: center;
+  margin-top: 3%;
+}
+
+.maincontainer .formcontainer .rightsection .order__desc span {
+  color: limegreen;
+  font-weight: 600;
+}
+/*# sourceMappingURL=main.css.map */

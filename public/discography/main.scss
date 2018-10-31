@@ -148,6 +148,16 @@ main{
     }
 }
 
+.warning{
+    width: 100%;
+    padding: 200px 0;
+    &__text{
+        text-align: center;
+        font-size: 25px;
+        color: white;
+    }
+}
+
 /*the container must be positioned relative:*/
 .custom-select {
     position: relative;

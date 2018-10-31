@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Linkin Park</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+    <!-- NAVEGACION GLOBAL DE LA PAGINA -->
+    <section class="globalnav">
+        <img class="globalnav__logo" src="../data/images/LP_logo.png" alt="LP logo not found">
+        <nav class="globalnav__items">
+            <a class="globalnav__items__home" id="home" href="/">HOME</a>
+            <a class="globalnav__items__discography" id="discography" href="/discography">DISCOGRAPHY</a>
+            <a class="globalnav__items__videos" id="videos" href="">VIDEOS</a>
+            <a class="globalnav__items__newsletter" id="newsletter" href="">NEWSLETTER</a>
+            <img class="globalnav__items__carticon" src="../data/icons/cart.png">
+            <a class="globalnav__items__cart" id="cart" href="/cart">CART</a>
+        </nav>
+    </section>
+    <!-- ESPACIO EN EL ENCABEZADO -->
+    <section class="head"></section>
+    <!-- TITULO DE LA PAGINA -->
+    <section class="title">
+        <h1 class="title__text">CHECK-OUT</h1>
+    </section>
+    <!-- FORMULARIO DE PAGO -->
+    <main class="maincontainer">
+        <h3>Billing / Payment</h3>
+        <section class="formcontainer">
+            <article class="billing">
+                <div class="billing__head">
+                    <p class="billing__head__title">Billing Information</p>
+                </div>
+                <div class="billing__body">
+                    <p class="billing__body__nametitle" id="titlename">First Name</p>
+                    <input class="billing__body__input" id="inputname" type="text">
+
+                    <p class="billing__body__nametitle" id="titlelastname">Last Name</p>
+                    <input class="billing__body__input" id="inputlastname" type="text">
+
+                    <p class="billing__body__nametitle" id="titleid">ID</p>
+                    <input class="billing__body__input" id="inputid" type="text">
+
+                    <p class="billing__body__nametitle" id="titlemail">E-mail address</p>
+                    <input class="billing__body__input" id="inputmail" type="text">
+
+                    <p class="billing__body__nametitle" id="titlephone">Phone number</p>
+                    <input class="billing__body__input" id="inputphon" type="text">
+                </div>
+            </article>
+            <section class="rightsection">
+                <article class="payment">
+                    <div class="payment__head">
+                        <p class="payment__head__title">Payment Details</p>
+                    </div>
+                    <div class="payment__cards">
+                        <p>
+                        <input type="radio" name="card" value="Amex" checked>
+                        <label>Amex</label></p>
+                        <p>
+                        <input type="radio" name="card" value="Visa">
+                        <label>Visa</label></p>
+                        <p>
+                        <input type="radio" name="card" value="Master Card" checked>
+                        <label>Master Card</label></p>
+                        <p>
+                        <input type="radio" name="card" value="Other">
+                        <label>Other</label></p>
+                    </div>
+                    <p class="payment__nametitle" id="cardnumber">Card Number</p>
+                    <input class="payment__input" id="inputcardnumber" type="text">
+                </article>
+                <article class="order">
+                    <div class="order__head">
+                        <p class="order__head__title">Your Order:</p>
+                        <a class="order__head__button">CONFIRM ORDER</a>
+                    </div>
+                    <p class="order__desc">Subtotal:   <span>${{totalprice}}</span></p>
+                </article>
+            </section>
+        </section>
+    </main>
+</body>
+<script src="./script.js"></script>
+</html>

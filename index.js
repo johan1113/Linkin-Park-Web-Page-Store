@@ -52,7 +52,6 @@ app.get('/discography', function(request, response){
         }
         response.render('discography', discs_items);
     });
-
 });
 
 app.get('/discography/song', function(request, response){
@@ -154,6 +153,21 @@ app.get('/discography/updatedisc', function(request, response){
             newdiscs = discsfilter;
         }
         response.json(newdiscs);
+    });
+});
+
+app.get('/checkout', function(request, response){
+    const collection = db.collection('cartdiscs');
+    collection.find({}).toArray(function(err, docs){
+        var price = 0;
+        docs.forEach(element => {
+            price+=element.price;
+        });
+        var discs_items = {
+            totalprice: price,
+            discs: docs,
+        }
+        response.render('checkout', discs_items);
     });
 });
 

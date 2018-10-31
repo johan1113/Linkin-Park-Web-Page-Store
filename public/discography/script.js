@@ -153,9 +153,21 @@ window.addEventListener('load', function(){
     .then(newdiscs => {
       document.getElementsByClassName('discs')[0].innerHTML = "";
       console.log(newdiscs);
-      newdiscs.forEach(disc => {
-        createDisc(disc);
-      });
+      if(newdiscs.length != 0){
+        newdiscs.forEach(disc => {
+          createDisc(disc);
+        });
+      }else{
+        var div = document.createElement('div');
+        div.setAttribute('class','warning');
+
+        var p = document.createElement('p');
+        p.setAttribute('class','warning__text');
+        p.innerHTML = '<strong>UPS!</strong> apparently there is no disc with the specifications you are looking for.<br>Try searching again with different filters.'
+
+        div.appendChild(p);
+        document.querySelector('.discs').appendChild(div);
+      }
     });
   }
 
@@ -175,7 +187,7 @@ window.addEventListener('load', function(){
     h3.innerHTML = disc.name;
 
     var p = document.createElement('p');
-    p.innerHTML = disc.type+': '+disc.price;
+    p.innerHTML = disc.type+': $'+disc.price;
 
     var a =document.createElement('a');
     a.setAttribute('class','discs__item__content__button');
