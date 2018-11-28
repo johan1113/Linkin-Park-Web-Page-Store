@@ -6,13 +6,18 @@ window.addEventListener('load', function(){
           this.playIntro = document.querySelector('.play-intro');
           this.playIntro.classList.add('control-show');
 
-          this.complete('./data/interaction/songs/new-divide.mp3');
+          this.songs = ["breaking-the-habit.mp3","demo.mp3","new-divide.mp3"];
+          this.indexSongs = 0;
+
+          this.complete('./data/interaction/songs/'+this.songs[this.indexSongs]);
       
           this.count = 0;
           this.percent = 0;
           this.playing = false;
       
           this.objects = [];
+
+          
         }
       
         progress(percent) {
@@ -60,6 +65,8 @@ window.addEventListener('load', function(){
         addSoundControls() {
           this.btnPlay = document.querySelector('.play');
           this.btnPause = document.querySelector('.pause');
+          this.btnNext = document.querySelector('.next');
+          this.btnBefore = document.querySelector('.before');
       
           this.btnPlay.addEventListener('click', () => {
             this.play();
@@ -67,6 +74,14 @@ window.addEventListener('load', function(){
       
           this.btnPause.addEventListener('click', () => {
             this.pause();
+          });
+
+          this.btnNext.addEventListener('click', () => {
+            this.next();
+          });
+      
+          this.btnBefore.addEventListener('click', () => {
+            this.before();
           });
         }
       
@@ -109,6 +124,26 @@ window.addEventListener('load', function(){
           this.btnPause.classList.remove('control-show');
           this.btnPlay.classList.add('control-show');
         }
+
+        next(){
+          this.audioElement.pause();
+          this.indexSongs++
+          if(this.indexSongs == this.songs.length){
+            this.indexSongs = 0;
+          }
+          this.audioElement.src = './data/interaction/songs/'+this.songs[this.indexSongs];
+          this.play();
+        }
+
+        before(){
+          this.audioElement.pause();
+          this.indexSongs--;
+          if(this.indexSongs == -1){
+            this.indexSongs = this.songs.length-1;
+          }
+          this.audioElement.src = './data/interaction/songs/'+this.songs[this.indexSongs];
+          this.play();
+        }
       
         createScene() {
           this.scene = new THREE.Scene();
@@ -133,8 +168,8 @@ window.addEventListener('load', function(){
           
           this.camera = new THREE.PerspectiveCamera(45, width/height, 1, 1000);
           
-          this.camera.position.set(-15, 45, 0);
-          this.camera.lookAt(new THREE.Vector3(-15 ,0, 0));
+          this.camera.position.set(-18, 45, 0);
+          this.camera.lookAt(new THREE.Vector3(-18 ,0, 0));
                 
           this.scene.add(this.camera);
         }
@@ -210,7 +245,7 @@ window.addEventListener('load', function(){
         }
       
         drawWave() {
-          if (this.playing) {
+          //if (this.playing) {
             this.analyser.getByteFrequencyData(this.frequencyData);
       
             for (var i = 0; i < 140; i++) {
@@ -219,10 +254,10 @@ window.addEventListener('load', function(){
               const z = s.position;
       
               TweenMax.to(z, .2, {
-                y: p / 15
+                y: p / 25
               });
             }
-          }
+          //}
       
           this.moveRingGroup(this.firstRing, .01);
           this.moveRingGroup(this.secondRing, -.01);
@@ -276,6 +311,8 @@ window.addEventListener('load', function(){
           setTimeout(() => {
             this.playIntro.addEventListener('click', (evt)=>{
               evt.currentTarget.classList.remove('control-show');
+              this.btnNext.classList.add('control-show');
+              this.btnBefore.classList.add('control-show');
               this.play();
             });
             
