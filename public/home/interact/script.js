@@ -1,41 +1,12 @@
-window.addEventListener('load', function(){      
-    class Loader {
-        constructor() {
-          this.callback = null;
-        }
-      
-        load(file) {
-          const request = new XMLHttpRequest();
-      
-          request.open('GET', file, true);
-          request.onprogress = (evt) => {
-            let percent = Math.floor((evt.loaded / evt.total) * 100);
-      
-            this.callback(percent);
-          };
-      
-          request.onload = () => { this.complete(file); };
-          request.send();
-        }
-      
-        progress(callback) { this.callback = callback; };
-      
-        complete() { }
-      }
-      
-      
+window.addEventListener('load', function(){    
+
       class App {
-        constructor() {
-          this.loader = new Loader();
-          this.loader.progress((percent) => {
-            this.progress(percent);
-          });
+        constructor() {         
       
           this.playIntro = document.querySelector('.play-intro');
-          this.loaderBar = document.querySelector('.loader');
-      
-          this.loader.load('https://iondrimbafilho.me/demo.mp3');
-          this.loader.complete = this.complete.bind(this);
+          this.playIntro.classList.add('control-show');
+
+          this.complete('./data/interaction/songs/new-divide.mp3');
       
           this.count = 0;
           this.percent = 0;
@@ -75,10 +46,10 @@ window.addEventListener('load', function(){
             //this.addCameraControls();
             this.addFloor();
       
-            this.createRingOfSquares(20, 1, 0x4250ca, this.firstRing);
-            this.createRingOfSquares(30, 2, 0x721fa1, this.secondRing);
-            this.createRingOfSquares(40, 3, 0xf95c38, this.thirdRing);
-            this.createRingOfSquares(50, 4, 0x5e0f86, this.fourthRing);
+            this.createRingOfSquares(20, 1, 0x828282, this.firstRing);
+            this.createRingOfSquares(30, 2, 0x0A0A0A, this.secondRing);
+            this.createRingOfSquares(40, 3, 0x828282, this.thirdRing);
+            this.createRingOfSquares(50, 4, 0x0A0A0A, this.fourthRing);
       
             this.animate();
       
@@ -141,10 +112,14 @@ window.addEventListener('load', function(){
       
         createScene() {
           this.scene = new THREE.Scene();
-          this.scene.background = new THREE.Color(0xf15f48);
+          //this.scene.background = new THREE.Color(0xffffff);
+          this.scene.background = new THREE.TextureLoader().load( './data/interaction/images/background.jpg' );
+          this.scene.background.wrapS = THREE.ClampToEdgeWrapping;
+          this.scene.background.wrapT = THREE.ClampToEdgeWrapping;
+          
       
           this.renderer = new THREE.WebGLRenderer({ antialias: true });
-          this.renderer.setSize(window.innerWidth, window.innerHeight);
+          this.renderer.setSize(window.innerWidth, (window.innerWidth/16)*9 );
       
           this.renderer.shadowMap.enabled = true;
           this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -154,12 +129,12 @@ window.addEventListener('load', function(){
       
         createCamera() {
           const width = window.innerWidth;
-          const height =  window.innerHeight;
+          const height =  (window.innerWidth/16)*9;
           
           this.camera = new THREE.PerspectiveCamera(45, width/height, 1, 1000);
           
-          this.camera.position.set(0, 35, 0);
-          this.camera.lookAt(new THREE.Vector3(0,-1,0));
+          this.camera.position.set(-15, 45, 0);
+          this.camera.lookAt(new THREE.Vector3(-15 ,0, 0));
                 
           this.scene.add(this.camera);
         }
@@ -179,7 +154,7 @@ window.addEventListener('load', function(){
       
         onResize() {
           const ww = window.innerWidth;
-          const wh = window.innerHeight;
+          const wh = (window.innerWidth/16)*9;
           
           this.camera.aspect = ww / wh;
           this.camera.updateProjectionMatrix();
@@ -244,7 +219,7 @@ window.addEventListener('load', function(){
               const z = s.position;
       
               TweenMax.to(z, .2, {
-                y: p / 20
+                y: p / 15
               });
             }
           }
