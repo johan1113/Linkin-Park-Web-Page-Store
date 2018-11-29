@@ -16,9 +16,7 @@ window.addEventListener('load', function(){
           this.playing = false;
       
           this.objects = [];
-
-          
-        }
+        }        
       
         progress(percent) {
           this.loaderBar.style.transform = `scale(${percent / 100}, 1)`;
@@ -311,9 +309,10 @@ window.addEventListener('load', function(){
           setTimeout(() => {
             this.playIntro.addEventListener('click', (evt)=>{
               evt.currentTarget.classList.remove('control-show');
-              this.btnNext.classList.add('control-show');
               this.btnBefore.classList.add('control-show');
+              this.btnNext.classList.add('control-show');
               this.play();
+              
             });
             
             this.audioElement.src = file;

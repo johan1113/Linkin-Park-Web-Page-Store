@@ -1,0 +1,98 @@
+  .interaction{
+    position: relative;
+    width: 100%;
+    height: 56.25vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+
+  }
+  
+  canvas {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .play-intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
+    transform: translate(-50%, -50%);
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+  }
+  .play-intro svg {
+    width: 100%;
+  }
+  
+  button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+  
+  .controls {
+    position: absolute;
+    transform: rotate(12deg);
+    display: flex;
+    align-content: space-around;
+    left: 7.5vw;
+    top: 43vw;
+  }
+  
+  .play {
+    display: none;
+    margin-left: 5vw;
+  }
+  
+  .pause {
+    display: none;
+    margin-left: 5vw;
+  }
+
+  .controls button img{
+    width: 2vw;
+    height: 2vw;
+  }
+
+  .next {
+    display: none;
+    margin-left: 5vw;
+  }
+
+  .before {
+    display: none;
+    width: 2vw;
+  }
+  
+  .control-show {
+    display: block;
+  }
+
+  .player{
+    position: absolute;
+    width: 45vw
+  }
+
+  .disc{
+    position: absolute;
+    width: 25.57vw;
+    left: 7vw;
+    top: 8vw;
+  }
+
+  .stick{
+    position: absolute;
+    width: 18vw;
+    left: 8vw;
+    top: 30vw;
+  }
+
+  @media screen and (min-width: 768px) {
+
+  }
