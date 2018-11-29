@@ -6,7 +6,7 @@ window.addEventListener('load', function(){
           this.playIntro = document.querySelector('.play-intro');
           this.playIntro.classList.add('control-show');
 
-          this.songs = ["breaking-the-habit.mp3","demo.mp3","new-divide.mp3"];
+          this.songs = ["breaking-the-habit.mp3","castle-of-glass.mp3","new-divide.mp3","one-more-light.mp3"];
           this.indexSongs = 0;
 
           this.count = 0;
@@ -168,12 +168,12 @@ window.addEventListener('load', function(){
             this.newDisc.setAttribute('src','./data/interaction/images/disc.png');
             this.newDisc.setAttribute('class','disc');
 
-            this.newDisc.style.cssText = 'position: absolute;width: 25.57vw;left: 100vw;top: 15vw;transition: 1s ease;'
+            this.newDisc.style.cssText = 'position: absolute;width: 25.57vw;left: 100vw;top: 14vw;transition: 1s ease;'
 
             document.querySelector('.interaction').appendChild(this.newDisc);
     
             TweenLite.to(this.newDisc, 0.1, {
-              left: window.innerWidth*(0.645),
+              left: window.innerWidth*(0.715),
             })
             TweenLite.to(this.disc, 0.1, {
               left: window.innerWidth*(-0.3),
@@ -197,7 +197,7 @@ window.addEventListener('load', function(){
         createScene() {
           this.scene = new THREE.Scene();
           //this.scene.background = new THREE.Color(0xffffff);
-          this.scene.background = new THREE.TextureLoader().load( './data/interaction/images/background.jpg' );
+          this.scene.background = new THREE.TextureLoader().load( './data/interaction/images/background.png' );
           this.scene.background.wrapS = THREE.ClampToEdgeWrapping;
           this.scene.background.wrapT = THREE.ClampToEdgeWrapping;
           
@@ -217,8 +217,8 @@ window.addEventListener('load', function(){
           
           this.camera = new THREE.PerspectiveCamera(45, width/height, 1, 1000);
           
-          this.camera.position.set(-18, 45, 0);
-          this.camera.lookAt(new THREE.Vector3(-18 ,0, 0));
+          this.camera.position.set(-25.4, 50, 1.3);
+          this.camera.lookAt(new THREE.Vector3(-25.4 ,0, 1.3));
                 
           this.scene.add(this.camera);
         }
