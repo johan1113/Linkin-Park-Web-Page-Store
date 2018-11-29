@@ -2,7 +2,6 @@ const express = require('express');
 const hbs = require('express-handlebars');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
-
 //para definir la carpeta publica
 app.use(express.static('public'));
 //para registrar el motor de render handlebars
@@ -29,7 +28,28 @@ const dbName = 'linkinpark';
 const client = new MongoClient(url);
 
 var db = null;
+
+
 // metodo encargado de conectar con el servidor
+MongoClient.connect('mongodb+srv://cluster0-qhpue.mongodb.net/linkinpark',
+    {
+        auth: {
+            user: 'johanm1113',
+            password: 'sebasmedi98'
+        }
+    },
+    function(err, client){
+        if(err) throw err;
+
+        db = client.db('linkinpark');
+
+        app.listen(process.env.PORT || 1234);
+    }
+);
+
+
+
+/*
 client.connect(function(err) {
     if(err){
         console.err("ha fallado la conexion con el servidor");
@@ -37,6 +57,7 @@ client.connect(function(err) {
     }
     db = client.db(dbName);
 });
+*/
 
 //defninir ruta root o principal
 app.get('/', function(request, response){

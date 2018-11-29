@@ -47,33 +47,33 @@ button {
   display: flex;
   -ms-flex-line-pack: distribute;
       align-content: space-around;
-  left: 7.5vw;
+  left: 6.2vw;
   top: 43vw;
 }
 
 .play {
   display: none;
-  margin-left: 5vw;
+  margin-left: 4vw;
 }
 
 .pause {
   display: none;
-  margin-left: 5vw;
+  margin-left: 4vw;
 }
 
 .controls button img {
-  width: 2vw;
-  height: 2vw;
+  width: 3.5vw;
+  height: 3.5vw;
 }
 
 .next {
   display: none;
-  margin-left: 5vw;
+  margin-left: 4vw;
 }
 
 .before {
   display: none;
-  width: 2vw;
+  width: 3.5vw;
 }
 
 .control-show {
@@ -87,9 +87,9 @@ button {
 
 .disc {
   position: absolute;
-  width: 25.57vw;
-  left: 7vw;
-  top: 8vw;
+  width: 28vw;
+  left: 5.5vw;
+  top: 8.3vw;
   -webkit-transition: 1s ease;
   transition: 1s ease;
 }

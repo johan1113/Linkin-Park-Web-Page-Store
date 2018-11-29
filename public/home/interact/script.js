@@ -7,6 +7,7 @@ window.addEventListener('load', function(){
           this.playIntro.classList.add('control-show');
 
           this.songs = ["breaking-the-habit.mp3","castle-of-glass.mp3","new-divide.mp3","one-more-light.mp3"];
+          this.discs = ["breaking-the-habit.png","castle-of-glass.png","new-divide.png","one-more-light.png"];
           this.indexSongs = 0;
 
           this.count = 0;
@@ -142,38 +143,40 @@ window.addEventListener('load', function(){
         }
 
         next(){
-          this.pause();
-          this.createNewDisc();
           this.indexSongs++
           if(this.indexSongs == this.songs.length){
             this.indexSongs = 0;
           }
+
+          this.pause();
+          this.createNewDisc();
           this.audioElement.src = './data/interaction/songs/'+this.songs[this.indexSongs];
           this.pause();
         }
 
         before(){
-          this.pause();
-          this.createNewDisc();
           this.indexSongs--;
           if(this.indexSongs == -1){
             this.indexSongs = this.songs.length-1;
           }
+
+          this.pause();
+          this.createNewDisc();
           this.audioElement.src = './data/interaction/songs/'+this.songs[this.indexSongs];
         }
 
         createNewDisc(){
           if(this.newDisc == null){
             this.newDisc = document.createElement('img');
-            this.newDisc.setAttribute('src','./data/interaction/images/disc.png');
+            this.newDisc.setAttribute('src','./data/interaction/images/discs/'+this.discs[this.indexSongs]);
             this.newDisc.setAttribute('class','disc');
 
-            this.newDisc.style.cssText = 'position: absolute;width: 25.57vw;left: 100vw;top: 14vw;transition: 1s ease;'
+            this.newDisc.style.cssText = 'position: absolute;width: 28vw;left: 100vw;top: 12.5vw;transition: 1s ease;'
 
             document.querySelector('.interaction').appendChild(this.newDisc);
     
             TweenLite.to(this.newDisc, 0.1, {
-              left: window.innerWidth*(0.715),
+              left: window.innerWidth*(0.703),
             })
             TweenLite.to(this.disc, 0.1, {
               left: window.innerWidth*(-0.3),
@@ -188,8 +191,8 @@ window.addEventListener('load', function(){
             this.newDisc = null;
             
             TweenLite.to(this.disc, 0.1, {
-              left: window.innerWidth*(0.07),
-              top: window.innerWidth*(0.08),
+              left: window.innerWidth*(0.055),
+              top: window.innerWidth*(0.083),
             })
           }
         }
