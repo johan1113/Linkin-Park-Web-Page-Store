@@ -18,6 +18,8 @@ window.addEventListener('load', function(){
           this.rotation = false;
           this.angle = 0;
 
+          this.newDisc = null;
+
           this.complete('./data/interaction/songs/'+this.songs[this.indexSongs]);
         }        
       
@@ -122,6 +124,7 @@ window.addEventListener('load', function(){
         }
         
         play() {
+          this.evaluateDisc()
           TweenLite.to(this.stick, 1, {rotation:20, transformOrigin:"right 50%"});
           this.audioCtx.resume();
           this.audioElement.play();
@@ -139,25 +142,58 @@ window.addEventListener('load', function(){
         }
 
         next(){
-          this.audioElement.pause();
+          this.pause();
+          this.createNewDisc();
           this.indexSongs++
           if(this.indexSongs == this.songs.length){
             this.indexSongs = 0;
           }
           this.audioElement.src = './data/interaction/songs/'+this.songs[this.indexSongs];
-          this.play();
+          this.pause();
         }
 
         before(){
-          this.audioElement.pause();
+          this.pause();
+          this.createNewDisc();
           this.indexSongs--;
           if(this.indexSongs == -1){
             this.indexSongs = this.songs.length-1;
           }
           this.audioElement.src = './data/interaction/songs/'+this.songs[this.indexSongs];
-          this.play();
         }
-      
+
+        createNewDisc(){
+          if(this.newDisc == null){
+            this.newDisc = document.createElement('img');
+            this.newDisc.setAttribute('src','./data/interaction/images/disc.png');
+            this.newDisc.setAttribute('class','disc');
+
+            this.newDisc.style.cssText = 'position: absolute;width: 25.57vw;left: 100vw;top: 15vw;transition: 1s ease;'
+
+            document.querySelector('.interaction').appendChild(this.newDisc);
+    
+            TweenLite.to(this.newDisc, 0.1, {
+              left: window.innerWidth*(0.645),
+            })
+            TweenLite.to(this.disc, 0.1, {
+              left: window.innerWidth*(-0.3),
+            })
+          }
+        }
+
+        evaluateDisc(){
+          if(this.newDisc != null){
+            this.disc.remove(0);
+            this.disc = this.newDisc;
+            this.newDisc = null;
+            
+            TweenLite.to(this.disc, 0.1, {
+              left: window.innerWidth*(0.07),
+              top: window.innerWidth*(0.08),
+            })
+          }
+        }
+
         createScene() {
           this.scene = new THREE.Scene();
           //this.scene.background = new THREE.Color(0xffffff);

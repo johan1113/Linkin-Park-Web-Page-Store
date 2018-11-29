@@ -99,5 +99,6 @@ button {
   width: 18vw;
   left: 8vw;
   top: 30vw;
+  z-index: 10;
 }
 /*# sourceMappingURL=styles.css.map */
