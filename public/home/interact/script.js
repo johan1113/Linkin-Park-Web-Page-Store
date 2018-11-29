@@ -9,13 +9,16 @@ window.addEventListener('load', function(){
           this.songs = ["breaking-the-habit.mp3","demo.mp3","new-divide.mp3"];
           this.indexSongs = 0;
 
-          this.complete('./data/interaction/songs/'+this.songs[this.indexSongs]);
-      
           this.count = 0;
           this.percent = 0;
           this.playing = false;
       
           this.objects = [];
+
+          this.rotation = false;
+          this.angle = 0;
+
+          this.complete('./data/interaction/songs/'+this.songs[this.indexSongs]);
         }        
       
         progress(percent) {
@@ -40,6 +43,7 @@ window.addEventListener('load', function(){
             this.fourthRing = new THREE.Object3D();
       
             this.setupAudio();
+            this.addAnimationElements();
             this.addSoundControls();
             this.createScene();
             this.createCamera();
@@ -58,6 +62,13 @@ window.addEventListener('load', function(){
       
             this.playSound(file);
           }, 200);
+        }
+
+        addAnimationElements(){
+          this.tl = new TimelineLite();
+
+          this.disc = document.querySelector('.disc');
+          this.stick = document.querySelector('.stick');
         }
       
         addSoundControls() {
@@ -99,8 +110,8 @@ window.addEventListener('load', function(){
             const cos = Math.cos(pos) * distance;
       
             obj.position.set(sin, 0, cos);
-      
-            obj.rotateY(pos);
+
+              obj.rotateY(pos);
       
             this.objects.push(obj);
       
@@ -111,16 +122,20 @@ window.addEventListener('load', function(){
         }
         
         play() {
+          TweenLite.to(this.stick, 1, {rotation:20, transformOrigin:"right 50%"});
           this.audioCtx.resume();
           this.audioElement.play();
           this.btnPlay.classList.remove('control-show');
           this.btnPause.classList.add('control-show');
+          this.rotation = true;
         }
         
         pause() {
+          TweenLite.to(this.stick, 1, {rotation:0, transformOrigin:"right 50%"});
           this.audioElement.pause();
           this.btnPause.classList.remove('control-show');
           this.btnPlay.classList.add('control-show');
+          this.rotation = false;
         }
 
         next(){
@@ -198,7 +213,8 @@ window.addEventListener('load', function(){
           const planeGeometry = new THREE.PlaneGeometry(2000, 2000);
           const planeMaterial = new THREE.ShadowMaterial({ opacity: 0.08 });
           const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-      
+
+          
           planeGeometry.rotateX(- Math.PI / 2);
       
           plane.position.y = -1;
@@ -208,6 +224,7 @@ window.addEventListener('load', function(){
         }
       
         moveRingGroup(group, value) {
+          if(this.rotation)
           group.rotation.y += value;
         }
       
@@ -232,10 +249,18 @@ window.addEventListener('load', function(){
           //this.controls.update();
       
           this.drawWave();
+
+          this.moveDisc();
       
           this.renderer.render(this.scene, this.camera);
       
           requestAnimationFrame(this.animate.bind(this));
+        }
+
+        moveDisc(){
+          this.angle += 3;
+          if(this.rotation)
+          this.disc.setAttribute('style','transform:rotate('+this.angle+'deg)');
         }
       
         radians(degrees) {
